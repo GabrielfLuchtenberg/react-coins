@@ -7,7 +7,7 @@ class Http {
     get = url => {
         return fetch(`${this.url}/${url}`)
             .then(res => res.json().then(res => res))
-            .catch(e => console.log(e))
+            .catch(e => e.errorMessage)
     }
 }
 const cryptoApi = new Http(API_URL)
