@@ -1,9 +1,26 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Http from './http'
 
 class App extends Component {
-  render() {
+  constructor() {
+    super()
+
+    this.state = {
+      loading: false,
+      currencies: [],
+      errors: false,
+    }
+  }
+  componentDidMount () {
+    Http.get('cryptocurrencies')
+      .then(res => this.setState({ currencies: res.currencies, loading: false }))
+      .catch(e => this.setState({ errors: e.errorMessage, loading: false }))
+  }
+  render () {
+    const { loading, currencies, errors } = this.state;
+
     return (
       <div className="App">
         <header className="App-header">
@@ -17,8 +34,13 @@ class App extends Component {
             target="_blank"
             rel="noopener noreferrer"
           >
+
             Learn React
           </a>
+
+          {
+            currencies.map(i => <p>{i.id}</p>)
+          }
         </header>
       </div>
     );
