@@ -10,5 +10,7 @@ class Http {
             .catch(e => console.log(e))
     }
 }
-
-export default new Http(API_URL)
+const cryptoApi = new Http(API_URL)
+export {
+    cryptoApi
+} 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Http from './http'
+import { cryptoApi } from './http'
 
 class App extends Component {
   constructor() {
@@ -14,7 +14,7 @@ class App extends Component {
     }
   }
   componentDidMount () {
-    Http.get('cryptocurrencies')
+    cryptoApi.get('cryptocurrencies')
       .then(res => this.setState({ currencies: res.currencies, loading: false }))
       .catch(e => this.setState({ errors: e.errorMessage, loading: false }))
   }
