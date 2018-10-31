@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { cryptoApi } from './http'
-
+import {Table} from './components'
 class App extends Component {
   constructor() {
     super()
@@ -38,9 +38,10 @@ class App extends Component {
             Learn React
           </a>
 
-          {
+          <Table currencies={currencies} />
+          {/* {
             currencies.map(i => <p>{i.id}</p>)
-          }
+          } */}
         </header>
       </div>
     );
