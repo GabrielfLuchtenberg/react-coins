@@ -7,21 +7,24 @@ class Pagination extends Component {
     };
   }
 
-  render() {
-    const {page, totalPages,handlePaginationClick} = this.props
+  render () {
+    const { page, totalPages, handlePaginationClick } = this.props
     return (
       <div>
-          <button
-            onClick={()=>handlePaginationClick('prev')}
-            disabled={page <= 1}
-          >
-              Prev
-          </button>
-          <button
-            onClick={()=>handlePaginationClick('next')}
-            disabled={page > totalPages-1}
-          >
-              Next
+        <button
+          onClick={() => handlePaginationClick('prev')}
+          disabled={page <= 1}
+          type="button"
+        >
+          &larr;
+        </button>
+        <span className="pagination"><b>{page}</b> of <b>{totalPages}</b> </span>
+        <button
+          onClick={() => handlePaginationClick('next')}
+          disabled={page > totalPages - 1}
+          type="button"
+        >
+          &rarr;
           </button>
       </div>
     );
@@ -29,9 +32,9 @@ class Pagination extends Component {
 }
 
 Pagination.propTypes = {
-    handlePaginationClick: PropTypes.func.isRequired,
-    page: PropTypes.number.isRequired,
-    totalPages: PropTypes.number.isRequired,
+  handlePaginationClick: PropTypes.func.isRequired,
+  page: PropTypes.number.isRequired,
+  totalPages: PropTypes.number.isRequired,
 
 }
 
