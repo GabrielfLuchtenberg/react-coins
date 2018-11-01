@@ -1,4 +1,4 @@
-import { API_URL } from './config'
+import { CRYPTO_API_URL } from './config'
 
 class Http {
     constructor(url) {
@@ -10,7 +10,7 @@ class Http {
             .catch(e => e.errorMessage)
     }
 }
-const cryptoApi = new Http(API_URL)
+const cryptoApi = new Http(CRYPTO_API_URL)
 export {
     cryptoApi
 } 
