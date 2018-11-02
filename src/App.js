@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
-import List from './components/List/List';
+
 import logo from './logo.svg'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import { NotFound, Detail } from './components'
+import { NotFound, Detail, Table } from './components'
 class App extends Component {
 
   render () {
@@ -15,7 +15,7 @@ class App extends Component {
             <header className="App-header">
               <img src={logo} className="App-logo" alt="logo" />
               <Switch>
-                <Route path="/" component={List} exact />
+                <Route path="/" component={Table} exact />
                 <Route path="/currency/:id" component={Detail} exact />
                 <Route component={NotFound} exact />
               </Switch>
