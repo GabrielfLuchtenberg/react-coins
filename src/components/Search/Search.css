@@ -9,6 +9,7 @@
 }
 
 .search-icon {
+    left: 2px;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -20,8 +21,6 @@
     width: 18px;
     height: 18px;
     position: absolute;
-    /*top: 22px;
-    left: 2px; */
 }
 input{
     padding-left: 22px;

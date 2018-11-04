@@ -1,5 +1,5 @@
 table{
-    color: white;
+    /* color: white; */
     width: 60%;
     align-self: center;
     border-collapse: collapse; 
@@ -18,13 +18,24 @@ table th:last-child,
 table td:last-child{
     padding-right:1rem;
 }
-table thead tr{
-    line-height: 1.95rem;
-    border-bottom: 2px solid gray;
+tr:nth-child(even){
+    background-color: #f2f2f275
 }
-
+tr:hover{
+    cursor: pointer;
+    background-color: #f2faf6
+}
+table thead th{
+    font-weight: 500;
+}
+table thead tr{
+    color: gray;
+    height: 2.35rem;
+    line-height: 1.95rem;
+    border-bottom: 2px solid #8080804f;
+}
 
 table tbody tr:not(:last-child){
     line-height: 1.95rem;
-    border-bottom: 1px solid gray;
+    border-bottom: 2px solid #f2f2f2a8;
 }
