@@ -1,0 +1,30 @@
+.search-container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-right: 15px;
+    position: relative;
+    /* height: 35px; */
+    
+}
+
+.search-icon {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 1;
+    background-image: url('./search.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 18px;
+    height: 18px;
+    position: absolute;
+    /*top: 22px;
+    left: 2px; */
+}
+input{
+    padding-left: 22px;
+    height: 22px;
+}
+

@@ -4,11 +4,14 @@ class Http {
     constructor(url) {
         this.url = url
     }
-    get = url => {
-        return fetch(`${this.url}/${url}`)
-            .then(res => res.json().then(res => res))
-            .catch(e => e.errorMessage)
-    }
+    get = url => fetch(`${this.url}/${url}`)
+        .then(response => {
+            return response.json().then(json => {
+                return response.ok ? json : Promise.reject(json);
+            });
+        })
+
+
 }
 const cryptoApi = new Http(CRYPTO_API_URL)
 export {

@@ -1,0 +1,30 @@
+table{
+    color: white;
+    width: 60%;
+    align-self: center;
+    border-collapse: collapse; 
+}
+table td:not(:first-child),
+table th:not(:first-child){
+    text-align: right
+}
+
+table th:first-child,
+table td:first-child{
+    text-align: left;
+    padding-left:1rem;
+}
+table th:last-child,
+table td:last-child{
+    padding-right:1rem;
+}
+table thead tr{
+    line-height: 1.95rem;
+    border-bottom: 2px solid gray;
+}
+
+
+table tbody tr:not(:last-child){
+    line-height: 1.95rem;
+    border-bottom: 1px solid gray;
+}
