@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Button from '@material-ui/core/Button'
 class Pagination extends Component {
   constructor(props) {
     super(props);
@@ -11,21 +12,25 @@ class Pagination extends Component {
     const { page, totalPages, handlePaginationClick } = this.props
     return (
       <div>
-        <button
+        <Button
+          variant="contained"
+          color="primary"
           onClick={() => handlePaginationClick('prev')}
           disabled={page <= 1}
           type="button"
         >
           &larr;
-        </button>
+        </Button>
         <span className="pagination"><b>{page}</b> of <b>{totalPages}</b> </span>
-        <button
+        <Button
+          variant="contained"
+          color="primary"
           onClick={() => handlePaginationClick('next')}
           disabled={page > totalPages - 1}
           type="button"
         >
           &rarr;
-          </button>
+          </Button>
       </div>
     );
   }
