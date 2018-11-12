@@ -3,7 +3,7 @@
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
+  animation: rotate infinite 20s linear;
   height: 6rem;
 }
 
@@ -25,7 +25,15 @@
   /* background-color: #282c34; */
   min-height:calc(100vh - 6rem );
 }
+.App-logo-container{
+  display: flex;
+  text-decoration: none !important;
 
+}
+.App-logo-text{
+  align-self: center;
+  color: aliceblue !important;
+}
 .App-main > section{
   width: 100%;
   display: flex;
@@ -48,11 +56,13 @@
   color:  red
 }
 
-@keyframes App-logo-spin {
-  from {
+
+@keyframes rotate {
+  0% {
     transform: rotate(0deg);
   }
-  to {
+  
+  100% {
     transform: rotate(360deg);
   }
 }

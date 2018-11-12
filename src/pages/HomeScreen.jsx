@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table, Pagination, Loading } from '../components'
+import { CurrencyTable, Loading } from '../components'
 import { cryptoApi } from '../http';
 
 class HomeScreen extends Component {
@@ -11,7 +11,8 @@ class HomeScreen extends Component {
             currencies: [],
             errors: false,
             totalPages: 1,
-            page: 1
+            page: 1,
+            rowsPerPage: 10
         }
         this.handlePaginationClick = this.handlePaginationClick.bind(this);
     }
@@ -20,9 +21,9 @@ class HomeScreen extends Component {
         this.setState({
             loading: true
         })
-        const { page } = this.state
-        const perPage = 10
-        cryptoApi.get(`cryptocurrencies?page=${page}&perPage=${perPage}`)
+        const { page,rowsPerPage } = this.state
+        
+        cryptoApi.get(`cryptocurrencies?page=${page}&perPage=${rowsPerPage}`)
             .then(res => {
                 const { currencies, totalPages } = res
                 this.setState({
@@ -41,24 +42,33 @@ class HomeScreen extends Component {
         this.fetchCurrencies()
     }
 
-    handlePaginationClick (direction) {
-        let nextPage = this.state.page
-        nextPage = direction === 'next' ? nextPage + 1 : nextPage - 1
-        this.setState({ page: nextPage }, () => this.fetchCurrencies())
+    handlePaginationClick (e,page) {
+        page += 1
+        this.setState({ page  }, () => this.fetchCurrencies())
+    }
+
+    onChangeRowsPerPage = e =>{
+        this.setState({rowsPerPage: e.target.value},()=> this.fetchCurrencies())
     }
 
     render () {
-        const { loading, currencies, errors, page, totalPages } = this.state;
+        const { loading, currencies, errors, page, totalPages,rowsPerPage } = this.state;
         if (loading) {
-            return <section><div className="loading-container"><Loading /> </div></section>
+            return <section ><div className="loading-container"><Loading /> </div></section>
         }
         if (errors) {
             return <div>{errors}</div>
         }
         return (
-            <section style={{ paddingTop: '15px' }}>
-                <Table currencies={currencies} />
-                <Pagination page={page} totalPages={totalPages} handlePaginationClick={this.handlePaginationClick} />
+            <section style={{ paddingTop: '15px',width:"60%" }}>
+                <CurrencyTable 
+                    currencies={currencies} 
+                    rowsPerPage={rowsPerPage}
+                    page={page -1 }
+                    totalPages={totalPages}
+                    onChangePage={this.handlePaginationClick}
+                    onChangeRowsPerPage={this.onChangeRowsPerPage}
+                />
             </section>
         );
     }
