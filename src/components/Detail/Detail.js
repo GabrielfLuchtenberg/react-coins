@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
-import { cryptoApi } from '../../http';
+import { Paper, Typography, Card, CardContent, CardHeader, withStyles } from '@material-ui/core';
 
+const styles = theme => ({
 
+    label: {
+        fontWeight: 'bold',
+
+    }
+});
 class Detail extends Component {
     constructor(props) {
         super(props);
@@ -11,27 +17,37 @@ class Detail extends Component {
             error: null
         };
     }
-    componentDidMount () {
-        const currencyId = this.props.match.params.id
-        this.setState({ loading: true })
-        cryptoApi.get(`cryptocurrencies/${currencyId}`)
-            .then(res => this.setState({ currency: res, loading: false, error: null }))
-            .catch(e => this.setState({ error: e.errorMessage, loading: false, currency: null }))
-    }
+
     render () {
-        const { error, currency, loading } = this.state
-        if (error) {
-            return <p> {error}</p>
-        }
+        const { currency, classes } = this.props
+
         return (
-            <section>
-                <p> Detail</p>
-                <p>
-                    {loading ? 'Loading.. ' : currency.name}
-                </p>
-            </section>
+            <Paper>
+                <Card className={classes.card}>
+                    <CardHeader title={`${currency.rank} ${currency.symbol} - ${currency.name}`} />
+                    <CardContent>
+                        <Typography component='p' >
+                            <span className={classes.label}>Price: </span> {currency.price}
+                        </Typography>
+                        <Typography component='p'>
+                            <span className={classes.label}> 24h change:</span> {currency.percentChange24h}
+                        </Typography>
+                        <Typography component='p'>
+                            <span className={classes.label}>Makert Cap: </span>{currency.marketCap}
+                        </Typography>
+
+                        <Typography component='p'>
+                            <span className={classes.label}>Total Supply:</span> {currency.totalSupply}
+                        </Typography>
+                        <Typography component='p'>
+                            <span className={classes.label}>Volume change (24h):</span> {currency.volume24h}
+                        </Typography>
+                    </CardContent>
+                </Card>
+
+            </Paper>
         );
     }
 }
 
-export default Detail;
+export default withStyles(styles)(Detail);

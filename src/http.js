@@ -10,10 +10,10 @@ class Http {
                 return response.ok ? json : Promise.reject(json);
             });
         })
-
-
 }
+
 const cryptoApi = new Http(CRYPTO_API_URL)
+
 export {
     cryptoApi
 } 

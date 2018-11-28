@@ -21,8 +21,8 @@ class HomeScreen extends Component {
         this.setState({
             loading: true
         })
-        const { page,rowsPerPage } = this.state
-        
+        const { page, rowsPerPage } = this.state
+
         cryptoApi.get(`cryptocurrencies?page=${page}&perPage=${rowsPerPage}`)
             .then(res => {
                 const { currencies, totalPages } = res
@@ -42,17 +42,17 @@ class HomeScreen extends Component {
         this.fetchCurrencies()
     }
 
-    handlePaginationClick (e,page) {
+    handlePaginationClick (e, page) {
         page += 1
-        this.setState({ page  }, () => this.fetchCurrencies())
+        this.setState({ page }, () => this.fetchCurrencies())
     }
 
-    onChangeRowsPerPage = e =>{
-        this.setState({rowsPerPage: e.target.value},()=> this.fetchCurrencies())
+    onChangeRowsPerPage = e => {
+        this.setState({ rowsPerPage: e.target.value }, () => this.fetchCurrencies())
     }
 
     render () {
-        const { loading, currencies, errors, page, totalPages,rowsPerPage } = this.state;
+        const { loading, currencies, errors, page, totalPages, rowsPerPage } = this.state;
         if (loading) {
             return <section ><div className="loading-container"><Loading /> </div></section>
         }
@@ -60,11 +60,11 @@ class HomeScreen extends Component {
             return <div>{errors}</div>
         }
         return (
-            <section style={{ paddingTop: '15px',width:"60%" }}>
-                <CurrencyTable 
-                    currencies={currencies} 
+            <section style={{ paddingTop: '15px', width: "75%" }}>
+                <CurrencyTable
+                    currencies={currencies}
                     rowsPerPage={rowsPerPage}
-                    page={page -1 }
+                    page={page - 1}
                     totalPages={totalPages}
                     onChangePage={this.handlePaginationClick}
                     onChangeRowsPerPage={this.onChangeRowsPerPage}
